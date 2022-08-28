@@ -15,6 +15,18 @@ def getAverageColor(colors):
     red = (red / len(colors)) / 255
     green = (green / len(colors)) / 255
     blue = (blue / len(colors)) / 255
+    if blue == 0:
+        blue = 0.0001
+    if green == 0:
+        green = 0.0001
+    if red == 0:
+        red = 0.0001
+    if blue == 1:
+        blue = 0.9999
+    if green == 1:
+        green = 0.9999
+    if red == 1:
+        red = 0.9999
     return ([red, green, blue])
 
 def main():
