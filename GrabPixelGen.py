@@ -21,9 +21,10 @@ def main():
     if len(sys.argv) < 2:
         print('GrabPixelGen.py img/input.jpg LevelName')
         return
-    quality = 54
-    if sys.argv[3] == '-q':
-        quality = int(sys.argv[4])
+    quality = 38
+    if len(sys.argv) == 4:
+        if sys.argv[3] == '-q':
+            quality = int(sys.argv[4])
     image = Image.open(sys.argv[1])
     pixels = np.array(image)
     width, height = image.size
