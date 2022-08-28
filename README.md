@@ -11,4 +11,4 @@ This tool allows you to generate a .level file from a .jpg file. It will create 
 
 ## Usage
 
-``` python GrabPixelGen.py img/input.jpg LevelName ``` will output a .level file into the ```generation/level_output ``` folder and can be moved into your GRAB levels folder.
+``` python3 GrabPixelGen.py img/input.jpg LevelName ``` or ``` python GrabPixelGen.py img/input.jpg LevelName ```, depending on your setup will output a .level file into the ```generation/level_output ``` folder and can be moved into your GRAB ```files\levels\user``` folder to open in the games editor.
