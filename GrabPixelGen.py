@@ -21,14 +21,17 @@ def main():
     if len(sys.argv) < 2:
         print('GrabPixelGen.py img/input.jpg LevelName')
         return
+    quality = 54
+    if sys.argv[3] == '-q':
+        quality = int(sys.argv[4])
     image = Image.open(sys.argv[1])
     pixels = np.array(image)
     width, height = image.size
-    chunkWidth = math.floor(width / 54)
-    chunkHeight = math.floor(height / 54)
+    chunkWidth = math.floor(width / quality)
+    chunkHeight = math.floor(height / quality)
     chunks = []
-    for cy in range(54):
-        for cx in range(54):
+    for cy in range(quality):
+        for cx in range(quality):
             # chunk
             chunkColors = []
             for y in range(chunkHeight):
@@ -37,29 +40,29 @@ def main():
             chunkColor = getAverageColor(chunkColors)
             chunks.append(chunkColor)
     start = '''{
-	"title": "title",
-	"description": "description",
-	"creators": "GrabPixalGen",
-	"checkpoints": 10,
+    "title": "title",
+    "description": "description",
+    "creators": "GrabPixalGen",
+    "checkpoints": 10,
 
-	"start": {
-		"position": [28.0, -54.0, 10.0],
-		"rotation": [0.0, 0.0, 0.0, 1.0],
-		"radius": 0.5
-	},
-	"finish": {
-		"position": [26.0, -54.0, 10.0],
-		"radius": 0.5
-	},
+    "start": {
+        "position": [28.0, -'''+str(quality)+'''.0, 10.0],
+        "rotation": [0.0, 0.0, 0.0, 1.0],
+        "radius": 0.5
+    },
+    "finish": {
+        "position": [26.0, -'''+str(quality)+'''.0, 10.0],
+        "radius": 0.5
+    },
 
-	"nodes": [
-		{
-			"type": "default",
-			"shape": "cube",
-			"position": [27.0, -54.5, 10.0],
-			"rotation": [0.0, 0.0, 0.0, 1.0],
-			"scale": [4.0, 1.0, 2.0]
-		}'''
+    "nodes": [
+        {
+            "type": "default",
+            "shape": "cube",
+            "position": [27.0, -'''+str(quality)+'''.5, 10.0],
+            "rotation": [0.0, 0.0, 0.0, 1.0],
+            "scale": [4.0, 1.0, 2.0]
+        }'''
     end = ''']
 }'''
     xPos = 0
@@ -67,16 +70,16 @@ def main():
     json = ''
     for chunk in chunks:
         json += ''',
-		{
-			"type": "default_colored",
-			"shape": "cube",
-			"position": ['''+str(xPos)+'''.0, '''+str(yPos)+'''.0, 0.0],
-			"rotation": [0.0, 0.0, 0.0, 1.0],
-			"scale": [1.0, 1.0, 1.0],
-			"color": ['''+str(chunk[0])+''', '''+str(chunk[1])+''', '''+str(chunk[2])+''']
-		}'''
+        {
+            "type": "default_colored",
+            "shape": "cube",
+            "position": ['''+str(xPos)+'''.0, '''+str(yPos)+'''.0, 0.0],
+            "rotation": [0.0, 0.0, 0.0, 1.0],
+            "scale": [1.0, 1.0, 1.0],
+            "color": ['''+str(chunk[0])+''', '''+str(chunk[1])+''', '''+str(chunk[2])+''']
+        }'''
         xPos += 1
-        if xPos == 54:
+        if xPos == quality:
             xPos = 0
             yPos -= 1
     json = start + json + end
