@@ -53,7 +53,7 @@ def main():
             chunkColor = getAverageColor(chunkColors)
             chunks.append(chunkColor)
     start = '''{
-    "title": "title",
+    "title": "'''+sys.argv[2]+'''",
     "description": "description",
     "creators": "GrabPixalGen",
     "checkpoints": 10,

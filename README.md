@@ -18,3 +18,5 @@ The default resolution is 38x38 as it is the max that grab allows without breaki
 ## Credits
 
 The .proto files, ConvertToLevel.py, and everything in generation/generated was made by [Slin](https://slindev.com/), the creator of Grab.
+
+Any use of the pixel art generator should leave "GrabPixelGen" as a creator of the level.
